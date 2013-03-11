@@ -12,9 +12,10 @@ define([ 'jquery' ], function($) {
       var dfd = $.Deferred();
 
       $.ajax(url).then(function(resp) {
-        var people = $.map(resp.people, function(person) {
-          return person.name;
-        });
+        var people = [];
+        for (var i in resp.people) {
+          people.push(resp.people[i].name);
+        }
         dfd.resolve(people.sort());
       });
 
